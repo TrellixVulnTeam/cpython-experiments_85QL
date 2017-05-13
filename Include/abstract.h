@@ -184,7 +184,7 @@ PyAPI_FUNC(PyObject *) _PyStack_AsDict(
 
    Return 0 on success, raise an exception and return -1 on error.
 
-   Write the new stack into *p_stack. If *p_stack is differen than args, it
+   Write the new stack into *p_stack. If *p_stack is different than args, it
    must be released by PyMem_Free().
 
    The stack uses borrowed references.
