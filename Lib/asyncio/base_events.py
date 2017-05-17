@@ -507,7 +507,7 @@ class BaseEventLoop(events.AbstractEventLoop):
 
     def is_running(self):
         """Returns True if the event loop is running."""
-        return (self._thread_id is not None)
+        return self._thread_id is not None
 
     def time(self):
         """Return the time according to the event loop's clock.
@@ -1057,6 +1057,7 @@ class BaseEventLoop(events.AbstractEventLoop):
         for sock in sockets:
             sock.listen(backlog)
             sock.setblocking(False)
+            # Used with Mixins
             self._start_serving(protocol_factory, sock, ssl, server, backlog)
         if self._debug:
             logger.info("%r is serving", server)

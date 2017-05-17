@@ -1683,7 +1683,6 @@ class BaseEventLoopWithSelectorTests(test_utils.TestCase):
         self.assertFalse(sock.close.called)
         self.loop._remove_reader.assert_called_with(10)
         self.loop.call_later.assert_called_with(constants.ACCEPT_RETRY_DELAY,
-                                                # self.loop._start_serving
                                                 mock.ANY,
                                                 MyProto, sock, None, None, mock.ANY)
 
