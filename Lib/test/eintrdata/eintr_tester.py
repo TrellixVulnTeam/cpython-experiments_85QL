@@ -114,10 +114,12 @@ class OSEINTRTest(EINTRBaseTest):
     def test_read(self):
         rd, wr = os.pipe()
         self.addCleanup(os.close, rd)
+
         # wr closed explicitly by parent
 
         # the payload below are smaller than PIPE_BUF, hence the writes will be
         # atomic
+
         datas = [b"hello", b"world", b"spam"]
 
         code = '\n'.join((
@@ -314,7 +316,6 @@ class SocketEINTRTest(EINTRBaseTest):
     # fixed in the kernel.
     # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=203162
     @support.requires_freebsd_version(10, 3)
-    @unittest.skipUnless(hasattr(os, 'mkfifo'), 'needs mkfifo()')
     @unittest.skipIf(android_not_root, "mkfifo not allowed, non root user")
     def _test_open(self, do_open_close_reader, do_open_close_writer):
         filename = support.TESTFN
