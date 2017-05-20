@@ -81,9 +81,12 @@ class OSEINTRTest(EINTRBaseTest):
 
     def _test_wait_multiple(self, wait_func):
         num = 3
+
         processes = [self.new_sleep_process() for _ in range(num)]
+
         for _ in range(num):
             wait_func()
+
         # Call the Popen method to avoid a ResourceWarning
         for proc in processes:
             proc.wait()
