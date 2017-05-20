@@ -377,8 +377,7 @@ class TimeEINTRTest(EINTRBaseTest):
 @unittest.skipUnless(hasattr(signal, "setitimer"), "requires setitimer()")
 # bpo-30320: Need pthread_sigmask() to block the signal, otherwise the test
 # is vulnerable to a race condition between the child and the parent processes.
-@unittest.skipUnless(hasattr(signal, 'pthread_sigmask'),
-                     'need signal.pthread_sigmask()')
+@unittest.skipUnless(hasattr(signal, 'pthread_sigmask'), 'need signal.pthread_sigmask()')
 class SignalEINTRTest(EINTRBaseTest):
     """ EINTR tests for the signal module. """
 
