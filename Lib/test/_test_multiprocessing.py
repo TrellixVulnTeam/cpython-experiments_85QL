@@ -353,9 +353,7 @@ class _TestProcess(BaseTestCase):
         wconn.send(id)
         if len(id) < 2:
             for i in range(2):
-                p = cls.Process(
-                    target=cls._test_recursion, args=(wconn, id+[i])
-                    )
+                p = cls.Process(target=cls._test_recursion, args=(wconn, id+[i]))
                 p.start()
                 p.join()
 
@@ -399,9 +397,7 @@ class _TestProcess(BaseTestCase):
         p.join()
         self.assertTrue(wait_for_handle(sentinel, timeout=1))
 
-#
-#
-#
+
 
 class _UpperCaser(multiprocessing.Process):
 
