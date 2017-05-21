@@ -27,9 +27,11 @@ import test.support.script_helper
 _multiprocessing = test.support.import_module('_multiprocessing')
 # Skip tests if sem_open implementation is broken.
 test.support.import_module('multiprocessing.synchronize')
+
 # import threading after _multiprocessing to raise a more relevant error
 # message: "No module named _multiprocessing". _multiprocessing is not compiled
 # without thread support.
+
 import threading
 
 import multiprocessing.dummy
@@ -69,7 +71,6 @@ def latin(s):
 #
 
 LOG_LEVEL = util.SUBWARNING
-#LOG_LEVEL = logging.DEBUG
 
 DELTA = 0.1
 CHECK_TIMINGS = False     # making true makes tests take a lot longer
