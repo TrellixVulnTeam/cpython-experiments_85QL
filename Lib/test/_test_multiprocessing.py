@@ -398,7 +398,6 @@ class _TestProcess(BaseTestCase):
         self.assertTrue(wait_for_handle(sentinel, timeout=1))
 
 
-
 class _UpperCaser(multiprocessing.Process):
 
     def __init__(self):
@@ -420,6 +419,7 @@ class _UpperCaser(multiprocessing.Process):
         self.parent_conn.send(None)
         self.parent_conn.close()
         self.child_conn.close()
+
 
 class _TestSubclassingProcess(BaseTestCase):
 
@@ -456,7 +456,6 @@ class _TestSubclassingProcess(BaseTestCase):
         fd = os.open(testfn, os.O_WRONLY | os.O_CREAT | os.O_EXCL)
         sys.stderr = open(fd, 'w', closefd=False)
         1/0 # MARKER
-
 
     @classmethod
     def _test_sys_exit(cls, reason, testfn):
@@ -495,15 +494,13 @@ class _TestSubclassingProcess(BaseTestCase):
             p.join(5)
             self.assertEqual(p.exitcode, reason)
 
-#
-#
-#
 
 def queue_empty(q):
     if hasattr(q, 'empty'):
         return q.empty()
     else:
         return q.qsize() == 0
+
 
 def queue_full(q, maxsize):
     if hasattr(q, 'full'):
@@ -513,7 +510,6 @@ def queue_full(q, maxsize):
 
 
 class _TestQueue(BaseTestCase):
-
 
     @classmethod
     def _test_put(cls, queue, child_can_start, parent_can_continue):
@@ -528,10 +524,7 @@ class _TestQueue(BaseTestCase):
         child_can_start = self.Event()
         parent_can_continue = self.Event()
 
-        proc = self.Process(
-            target=self._test_put,
-            args=(queue, child_can_start, parent_can_continue)
-            )
+        proc = self.Process(target=self._test_put, args=(queue, child_can_start, parent_can_continue))
         proc.daemon = True
         proc.start()
 
@@ -583,7 +576,6 @@ class _TestQueue(BaseTestCase):
     @classmethod
     def _test_get(cls, queue, child_can_start, parent_can_continue):
         child_can_start.wait()
-        #queue.put(1)
         queue.put(2)
         queue.put(3)
         queue.put(4)
